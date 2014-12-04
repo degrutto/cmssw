@@ -62,7 +62,7 @@ class GeneratorAnalyzer( Analyzer ):
         if self.doPDFWeights:
             self.mchandles['pdfstuff'] = AutoHandle( 'generator', 'GenEventInfoProduct' )
 
-    def beginLoop(self):
+    def beginLoop(self,setup):
         super(GeneratorAnalyzer,self).beginLoop()
 
     def fillGenLeptons(self, event, particle, isTau=False, sourceId=25):

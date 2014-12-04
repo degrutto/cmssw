@@ -10,7 +10,7 @@ class VHbbAnalyzer( Analyzer ):
         super(VHbbAnalyzer, self).declareHandles()
 #        self.handles['pfCands'] =  AutoHandle( 'packedPFCandidates', 'std::vector<pat::PackedCandidate>' )
 
-    def beginLoop(self):
+    def beginLoop(self,setup):
         super(VHbbAnalyzer,self).beginLoop()
     
     def makeJets(self,event):

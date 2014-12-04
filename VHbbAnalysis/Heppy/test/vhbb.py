@@ -99,7 +99,7 @@ sequence = [GenAna,VertexAna,LepAna,TauAna,PhoAna,JetAna,METAna,VHbb,treeProduce
 
 from PhysicsTools.Heppy.utils.miniAodFiles import miniAodFiles
 sample = cfg.Component(
-    files = ["/scratch/arizzi/Hbb/CMSSW_7_0_9_patch3/src/VHbbAnalysis/Heppy/test/226BB247-A565-E411-91CF-00266CFF0AF4.root"],
+    files = ["/gpfs/ddn/srm/cms//store/mc/Spring14miniaod/ZH_HToBB_ZToLL_M-125_13TeV_powheg-herwigpp/MINIAODSIM/141029_PU40bx50_PLS170_V6AN2-v1/00000/226BB247-A565-E411-91CF-00266CFF0AF4.root"],
     #files = ["226BB247-A565-E411-91CF-00266CFF0AF4.root"],
     name="ATEST", isEmbed=False
     )
