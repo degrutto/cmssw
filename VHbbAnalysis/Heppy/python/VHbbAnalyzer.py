@@ -11,7 +11,7 @@ class VHbbAnalyzer( Analyzer ):
 #        self.handles['pfCands'] =  AutoHandle( 'packedPFCandidates', 'std::vector<pat::PackedCandidate>' )
 
     def beginLoop(self,setup):
-        super(VHbbAnalyzer,self).beginLoop()
+        super(VHbbAnalyzer,self).beginLoop(setup)
     
     def makeJets(self,event):
 	inputs=ROOT.std.vector(ROOT.heppy.ReclusterJets.LorentzVector)()
