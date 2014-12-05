@@ -142,7 +142,7 @@ class GeneratorAnalyzer( Analyzer ):
                     print " | dau[%d] %5d pdgId %+5d status %3d  pt %6.1f  " % (j,idau,dau.pdgId(),dau.status(),dau.pt()),
                 print ""
 
-        event.genHiggsBoson = None
+        event.genHiggsBoson = []
         event.genleps    = []
         event.gentauleps = []
         event.gentaus    = []
