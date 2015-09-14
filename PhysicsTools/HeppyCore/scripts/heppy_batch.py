@@ -85,7 +85,7 @@ fi"""
 
    if remoteDir=='':
       cpCmd=dirCopy
-   elif  remoteDir.startswith("root://eoscms.cern.ch//eos/cms/store/"):
+   elif  remoteDir.startswith("/store/"):
        cpCmd="""echo 'sending root files to remote dir'
 export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH # 
 for f in Loop/tree*.root
@@ -106,7 +106,7 @@ do
    fi
 done
 #fi
-""".format(idx=jobDir[jobDir.find("_Chunk")+6:].strip("/"),  srm=""+remoteDir+jobDir[jobDir.rfind("/"):jobDir.find("_Chunk")])
+""".format(idx=jobDir[jobDir.find("_Chunk")+6:].strip("/"),  srm="root://eoscms.cern.ch//eos/cms"+remoteDir+jobDir[jobDir.rfind("/"):jobDir.find("_Chunk")])
    else:
        print "chosen location not supported yet: ", remoteDir
        print 'path must start with /store/'
@@ -272,6 +272,7 @@ class MyBatchManager( BatchManager ):
        scriptFileName = jobDir+'/batchScript.sh'
        scriptFile = open(scriptFileName,'w')
        storeDir = self.remoteOutputDir_.replace('/castor/cern.ch/cms','')
+       storeDir = self.remoteOutputDir_.replace('root://eoscms.cern.ch//eos/cms','')
        mode = self.RunningMode(options.batch)
        if mode == 'LXPLUS':
            scriptFile.write( batchScriptCERN( jobDir, storeDir) ) 
