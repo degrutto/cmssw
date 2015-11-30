@@ -234,12 +234,12 @@ PUAna = PileUpAnalyzer.defaultConfig
 from VHbbAnalysis.Heppy.VHbbAnalyzer import VHbbAnalyzer
 JetAna.jetPt = 15
 JetAna.jetEta = 4.7
-JetAna.doQG=True
+JetAna.doQG=False
 JetAna.QGpath=os.environ['CMSSW_BASE']+"/src/PhysicsTools/Heppy/data/pdfQG_AK4chs_13TeV_v2b.root"
 JetAna.recalibrateJets=True
 JetAna.jecPath=os.environ['CMSSW_BASE']+"/src/VHbbAnalysis/Heppy/data/jec"
 JetAna.mcGT="74X_mcRun2_asymptotic_v2"
-JetAna.dataGT = "74X_dataRun2_reMiniAOD_v0"
+JetAna.dataGT = "Summer15_25nsV6_DATA"
 JetAna.addJECShifts=True
 JetAna.addJERShifts=True
 
@@ -257,9 +257,9 @@ VHbb = cfg.Analyzer(
     higgsJetsPreSelection = lambda x: (( x.puJetId() > 0 and x.jetID('POG_PFID_Loose')) or abs(x.eta())>3.0 ) and x.pt() >  20 ,
     higgsJetsPreSelectionVBF = lambda x: x.pt() >  20 ,
 #    higgsJetsPreSelectionVBF = lambda x: (( x.puJetId() > 0 and x.jetID('POG_PFID_Loose')) or abs(x.eta())>3.0 ) and x.pt() >  20,
-    passall=False,
-    doSoftActivityVH=True,
-    doVBF=True,
+    passall=True,
+    doSoftActivityVH=False,
+    doVBF=False,
     regressions = [
         {"weight":"Zll-spring15.weights.xml", "name":"jet0Regression_zll", "vtypes":[0,1]},
         {"weight":"Wln-spring15.weights.xml", "name":"jet0Regression_wln", "vtypes":[2,3]},
@@ -343,7 +343,10 @@ sequence = [jsonAna,LHEAna,FlagsAna, hbheAna, GenAna,VHGenAna,PUAna,TrigAna,Vert
 from PhysicsTools.Heppy.utils.miniAodFiles import miniAodFiles
 sample = cfg.MCComponent(
     files = [
-		"/scratch/arizzi/00B6C8DE-E76E-E511-AEDE-008CFA000BB8.root" ##ttbar
+'file:68790C43-4971-E511-AFD7-782BCB20E307.root'
+#"root://xrootd.unl.edu//store/mc/RunIISpring15MiniAODv2/ZprimeToZhToZinvhbb_narrow_M-1200_13TeV-madgraph/MINIAODSIM/74X_mcRun2_asymptotic_v2-v1/30000/8C77EFF8-4771-E511-97BD-B083FED40671.root"
+#"/store/mc/RunIISpring15MiniAODv2/ZprimeToZhToZinvhbb_narrow_M-1200_13TeV-madgraph/MINIAODSIM/74X_mcRun2_asymptotic_v2-v1/30000/8C77EFF8-4771-E511-97BD-B083FED40671.root"
+#		"/scratch/arizzi/00B6C8DE-E76E-E511-AEDE-008CFA000BB8.root" ##ttbar
 ],
 
     #files = ["226BB247-A565-E411-91CF-00266CFF0AF4.root"],
@@ -370,7 +373,7 @@ class TestFilter(logging.Filter):
 # and the following runs the process directly 
 if __name__ == '__main__':
     from PhysicsTools.HeppyCore.framework.looper import Looper 
-    looper = Looper( 'Loop', config, nPrint = 1, nEvents = 100)
+    looper = Looper( 'Loop', config, nPrint = 1, nEvents = 1)
 
     import time
     import cProfile
