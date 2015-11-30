@@ -2,8 +2,8 @@ from WMCore.Configuration import Configuration
 config = Configuration()
 
 config.section_("General")
-config.General.requestName = 'VHBB_HEPPY_A14_001'
-config.General.workArea = 'crab_projects_A14_001'
+config.General.requestName = 'HBB_HEPPY_A14_003'
+config.General.workArea = 'crab_projects_A14_003'
 config.General.transferLogs=True
 
 config.section_("JobType")
@@ -35,13 +35,15 @@ config.section_("Data")
 config.Data.inputDataset = '/ZH_HToBB_ZToLL_M125_13TeV_amcatnloFXFX_madspin_pythia8/RunIISpring15DR74-Asympt25ns_MCRUN2_74_V9-v1/MINIAODSIM'
 config.Data.inputDBS = 'global'
 config.Data.splitting = 'FileBased'
-config.Data.unitsPerJob = 2
-config.Data.totalUnits = 4
-config.Data.outLFNDirBase = '/store/user/arizzi/VHBBHeppyA14/'
+config.Data.unitsPerJob = 1
+config.Data.totalUnits = 100
+config.Data.outLFNDirBase = '/store/group/cmst3/user/degrutto/ZprimeHBBHeppyD14_TEST_v3/'
 config.Data.publication = True
-config.Data.publishDataName = 'VHBB_HEPPY_A14'
+config.Data.outputDatasetTag = 'HBB_HEPPY_A14'
 
 config.section_("Site")
-config.Site.storageSite = "T2_IT_Pisa"
+config.Site.storageSite = "T2_CH_CERN"
+config.Site.whitelist = ["T2_CH_CERN"]
+
 
 #config.Data.ignoreLocality = True

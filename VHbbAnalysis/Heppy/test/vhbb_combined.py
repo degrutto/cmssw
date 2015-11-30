@@ -43,6 +43,13 @@ treeProducer.collections["ak08prunedcal"] = NTupleCollection("FatjetAK08prunedCa
                                                              10,
                                                              help="AK, R=0.8, pT > 200 GeV, pruned zcut=0.1, rcut=0.5, n=2, calibrated")
 
+
+treeProducer.collections["ak08prunedreg"] = NTupleCollection("FatjetAK08prunedreg",
+                                                             fourVectorType,
+                                                             10,
+                                                             help="AK, R=0.8, pT > 200 GeV, pruned zcut=0.1, rcut=0.5, n=2, calibrated and regressed")
+
+
 treeProducer.collections["ak08prunedsubjets"] = NTupleCollection("SubjetAK08pruned",
                                                                  subjetType,
                                                                  10,

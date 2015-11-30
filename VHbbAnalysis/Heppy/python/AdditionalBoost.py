@@ -10,7 +10,7 @@ from PhysicsTools.Heppy.analyzers.core.AutoHandle import AutoHandle
 from PhysicsTools.Heppy.physicsobjects.PhysicsObject import PhysicsObject
 from PhysicsTools.Heppy.physicsobjects.PhysicsObjects import Jet
 from PhysicsTools.Heppy.physicsutils.JetReCalibrator import JetReCalibrator
-
+from JetRegressionAK08 import JetRegressionAK08
 
 # Fastjet-Contrib is not in the path per default.
 # We need it for n-subjettiness recalculation
@@ -343,6 +343,16 @@ class AdditionalBoost( Analyzer ):
             self.handles['ca15prunedsubjetbtag'] = AutoHandle( ("ca15PFPrunedJetsCHSpfCombinedInclusiveSecondaryVertexV2BJetTags","","EX"), 
                                                                "edm::AssociationVector<edm::RefToBaseProd<reco::Jet>,vector<float>,edm::RefToBase<reco::Jet>,unsigned int,edm::helper::AssociationIdenticalKeyReference>")
 
+
+            self.regressionsAK08={}
+            print 'Initialize regression AK08'
+            regressionAK08 = JetRegressionAK08('regAK08.weights.xml', 'Jet0RegressionAK08')
+#/afs/cern.ch/user/d/degrutto/scratch3/VHbbRun2/CMSSW_7_4_15/src/run2_boostedZH_161115/weights/TMVARegression_BDTG.weights.xml', 'Jet0RegressionAK08')           
+            self.regressionsAK08[0] = regressionAK08  
+
+        
+
+
     def process(self, event):
         
 
@@ -519,7 +529,12 @@ class AdditionalBoost( Analyzer ):
 
         setattr(event, 'ak08prunedcal', pruned_cal_jets)
 
-            
+        ########
+        #  AK08 Regression
+        #######
+        self.regressionsAK08[0].evaluateRegressionAK08(event)
+        
+ 
         ######## 
         # Subjets 
         ########

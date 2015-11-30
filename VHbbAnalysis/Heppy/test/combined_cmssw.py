@@ -31,18 +31,43 @@ def initialize(isMC=True):
         fileNames = cms.untracked.vstring("file:///scratch/gregor/TTJets_MSDecaysCKM_central_Tune4C_13TeV_MiniAOD.root")
     )
     process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
+#    process.met = cms.EDFilter("PtMinCandViewSelector",
+#                               src = cms.InputTag("slimmedMETs"),
+#                               ptMin   = cms.double(150),
+#                       )
+ 
+#    process.metFilter = cms.EDFilter("CandViewCountFilter",
+#                                    src = cms.InputTag("met"),
+#                                     minNumber = cms.uint32(1),
+#                                     filter = cms.bool(True)
+#                                     ) 
+    
+#    process.metPath = cms.Path(    
+#        process.met
+#        *process.metFilter
+#        )
+
+#    process.EventSelection = cms.PSet(
+#        SelectEvents = cms.untracked.PSet(
+#            SelectEvents = cms.vstring(
+#                'metPath')
+#            )
+#        )
+    
 
     process.OUT = cms.OutputModule("PoolOutputModule",
-        fileName = cms.untracked.string('test.root'),
-        outputCommands = cms.untracked.vstring(['drop *'])
-    )
+ #                                  process.EventSelection, 
+                                   fileName = cms.untracked.string('test.root'),
+                                   outputCommands = cms.untracked.vstring(['drop *'])
+                                   )
     process.endpath= cms.EndPath(process.OUT)
+
 
     # Let CMSSW take care of scheduling 
     process.options = cms.untracked.PSet(     
         wantSummary = cms.untracked.bool(True),
         allowUnscheduled = cms.untracked.bool(True)
-    )
+        )
 
     skip_ca15 = False
 
@@ -130,7 +155,7 @@ def initialize(isMC=True):
         process.ca15PFSoftdropZ2B1JetsCHS = process.ca15PFJetsCHS.clone(
             useSoftDrop = cms.bool(True),
             zcut = cms.double(0.2),
-            beta = cms.double(0.1),
+            beta = cms.double(1.),
             R0 = cms.double(1.5),
             useExplicitGhosts = cms.bool(True))
 
