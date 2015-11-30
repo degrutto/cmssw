@@ -6,7 +6,7 @@ cd CMSSW_7_4_15/src
 
 cmsenv
 
-git cms-merge-topic degrutto:highmassvhbb
+git clone -b add_regAK08 https://github.com/degrutto/highmassvhbb.git
 
 cd VHbbAnalysis/Heppy/test
 
